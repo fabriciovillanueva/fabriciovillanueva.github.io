@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Funcionamiento de la herramienta</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="assets/img/icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon.png">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/templatemo.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/chatbot.css">
+    
+    <script src="chatbot.js" defer></script>
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        a.text-decoration-none {
+            color: black; /* Establece el color del texto del enlace a negro */
+        }
+        a.text-decoration-none:hover {
+            color: black; /* Asegura que el color del texto permanezca negro al pasar el ratón */
+        }
+    </style>
+    <title>Clickable Divs</title>
+
+</head>
+
+<body>
+    <!-- Start Top Nav -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
+        <div class="container text-light">
+            <div class="w-100 d-flex justify-content-between">
+                <div>
+                    <i class="fa fa-envelope mx-2"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@company.com">fabriciovillanueva337520@outlook.com</a>
+                    <i class="fa fa-phone mx-2"></i>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">771-503-8433</a>
+                </div>
+                <div>
+                    <a class="text-light" href="https://fb.com/fabriciovillanuevah" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://www.instagram.com/fabriciovillanuevah" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin fa-sm fa-fw"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Close Top Nav -->
+
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+                <img src="assets/img/icon.png" width="175px">
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+                <div class="flex-fill">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">Funcionamiento</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="shop.html">Arma tu PC</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contacto</a>
+                        </li>
+                    
+                    </ul>
+                </div>
+                <div id="chat-button" style="position: fixed; bottom: 80px; right: 20px; cursor: pointer; background-color: #38af73; color: white; padding: 10px; border-radius: 50%; z-index: 1001;">
+                    <i class="fa fa-robot"></i> Ayuda
+                </div>
+                
+                <!-- Chatbox -->
+                <div id="chatbox" class="chatbox hidden" style="position: fixed; bottom: 20px; right: 20px; width: 300px; z-index: 1000;">
+                    <div class="chatbox-header" style="background-color: #15910a; color: white; padding: 10px;">
+                        <span>Asistente sobre hardware</span>
+                        <button id="close-chat" style="background: none; border: none; color: white; font-size: 16px;">X</button>
+                    </div>
+                    <div class="chatbox-body" id="chat-messages" style="height: 200px; overflow-y: auto; padding: 10px; background-color: #f9f9f9;"></div>
+                    <input type="text" id="user-input" placeholder="Escribe tu mensaje aquí..." style="width: calc(100% - 100px); padding: 5px; margin: 5px; border: 1px solid #ddd;">
+                    <button id="send-message" style="width: 80px; padding: 5px; background-color: #7ac05a; color: white; border: none; cursor: pointer;">Enviar</button>
+                </div>
+                
+                
+
+                <style>
+                    /* Estilo para la ventana de chat */
+                    .chat-window {
+                        position: fixed;
+                        bottom: 20px;
+                        right: 20px;
+                        width: 300px;
+                        max-height: 400px;
+                        background-color: #f0f0f0;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                        display: none; /* Oculto por defecto */
+                        flex-direction: column;
+                        font-family: 'Roboto', sans-serif;
+                        z-index: 1000;
+                    }
+                    
+                    .chat-header {
+                        background-color: #007bff;
+                        color: #fff;
+                        padding: 10px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        font-size: 16px;
+                    }
+                    
+                    .close-chat {
+                        background: none;
+                        border: none;
+                        color: #fff;
+                        font-size: 18px;
+                        cursor: pointer;
+                    }
+                    
+                    .chat-messages {
+                        padding: 10px;
+                        overflow-y: auto;
+                        flex: 1;
+                    }
+                    
+                    .message {
+                        margin-bottom: 10px;
+                        padding: 8px 12px;
+                        border-radius: 15px;
+                        max-width: 80%;
+                        clear: both;
+                    }
+                    
+                    .bot-message {
+                        background-color: #e0e0e0;
+                        color: #333;
+                        float: left;
+                    }
+                    
+                    .user-message {
+                        background-color: #8bd8a5;
+                        color: #fff;
+                        float: right;
+                        text-align: right;
+                    }
+                    
+                    .chat-footer {
+                        display: flex;
+                        padding: 10px;
+                        background-color: #f1f1f1;
+                    }
+                    
+                    .chat-footer input {
+                        flex: 1;
+                        padding: 8px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        outline: none;
+                    }
+                    
+                    .chat-footer button {
+                        background-color: #007bff;
+                        color: #fff;
+                        border: none;
+                        padding: 8px 15px;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        margin-left: 5px;
+                    }
+                    
+                    .chat-footer button:hover {
+                        background-color: #0056b3;
+                    }
+                    </style>
+                
+        </div>
+    </nav>
+                    </div>
+                    <a class="nav-icon position-relative text-decoration-none" href="shop.html">
+                        <i class="fa fa-fw fa-check-circle text-dark mr-1"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">PC</span>
+                    </a>
+                    
+                
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Close Header -->
+
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <section class="bg-success py-5">
+        <div class="container">
+            <div class="row align-items-center py-5">
+                <div class="col-md-8 text-white">
+                    <h1>Funcionamiento</h1>
+                    <p>
+                        PC Match es una herramienta web innovadora diseñada específicamente para simplificar el proceso de ensamblaje de computadoras personalizadas. Esta plataforma garantiza la compatibilidad de los componentes seleccionados, optimizando así el rendimiento del sistema ensamblado.
+
+Al acceder a la función "Arma tu PC" en nuestra plataforma, podrás comenzar seleccionando un componente inicial, como el procesador o la tarjeta gráfica. Basándonos en tu elección, PC Match desplegará automáticamente una lista de componentes compatibles que incluyen memoria RAM, unidades de almacenamiento,
+ placas madre y otros elementos esenciales. Cada opción mostrada ha sido cuidadosamente evaluada para asegurar que se complementen efectivamente, evitando incompatibilidades que puedan afectar el rendimiento.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <img src="assets/img/PC MATCH ANIMADA.webp" width="300px" alt="About Hero">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Sección Introductoria -->
+<section class="bg-dark text-white py-5">
+    <div class="container">
+        <div class="row align-items-center py-5">
+            <div class="col-md-8 order-md-1">
+                <h1>¿Qué es PC Match?</h1>
+                <p>
+                    PC Match es una herramienta interactiva diseñada específicamente para aquellos interesados en el ensamblaje de computadoras, tanto novatos como entusiastas. La herramienta simplifica el proceso de selección de componentes, permitiendo a los usuarios empezar por un solo componente. Al seleccionar un componente, PC Match automáticamente sugiere un ensamblaje predefinido que incorpora el componente elegido, asegurando compatibilidad y rendimiento óptimo.
+
+                    Mirando hacia el futuro, PC Match está diseñada para expandir sus capacidades, ofreciendo a los usuarios una variedad de opciones y listas de ensamblaje a partir de cualquier componente seleccionado. Esta funcionalidad permitirá a los usuarios personalizar aún más sus sistemas, explorando diferentes combinaciones y configuraciones que se ajusten a sus necesidades específicas y presupuesto.
+                </p>
+                </div>
+            <div class="col-md-4 order-md-2">
+                <img src="assets/img/Preguntando.webp" width="300px" alt="Introducción a PC Match">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Configuraciones -->
+<section class="bg-success text-white py-5">
+    <div class="container">
+        <div class="row align-items-center py-5">
+            <div class="col-md-8 text-white order-md-2">
+                <h1>Configuración de PC</h1>
+                <p>
+                    ¿PC Match está limitada a una sola configuración de PC? En esta etapa inicial, PC Match presenta una única configuración recomendada como una demostración de lo que nuestra herramienta puede hacer. Esta configuración ha sido seleccionada para mostrar una combinación equilibrada de rendimiento y valor.
+                </p>
+            </div>
+            <div class="col-md-4 order-md-1">
+                <img src="assets/img/Pc configuration.webp" width="300px" alt="Configuración de PC">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Expansión Futura -->
+<section class="bg-dark text-white py-5">
+    <div class="container">
+        <div class="row align-items-center py-5">
+            <div class="col-md-8 order-md-1">
+                <h1>Futuras actualizaciones</h1>
+                <p>
+                    ¿Habrá más configuraciones disponibles en el futuro? Definitivamente. Estamos trabajando para expandir las capacidades de PC Match. En futuras actualizaciones, planeamos introducir múltiples configuraciones que los usuarios podrán personalizar según sus necesidades específicas. Nuestro objetivo es permitir a los usuarios explorar una variedad de opciones de hardware para que puedan tomar decisiones informadas al construir o actualizar sus PC.
+                </p>
+            </div>
+            <div class="col-md-4 order-md-2">
+                <img src="assets/img/Futuras actualizacions.webp" width="300px" alt="Futuras Actualizaciones">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Mantenerse Informado -->
+<section class="bg-success text-white py-5">
+    <div class="container">
+        <div class="row align-items-center py-5">
+            <div class="col-md-8 text-white order-md-2">
+                <h1>Mantente informado</h1>
+                <p>
+                    ¿Cómo puedo mantenerme informado sobre las actualizaciones? ¡Nos encantaría mantenerlo actualizado! Por favor, suscríbase a nuestro boletín o síganos en nuestras redes sociales para recibir notificaciones sobre nuevas características y actualizaciones de la herramienta.
+                </p>
+            </div>
+            <div class="col-md-4 order-md-1">
+                <img src="assets/img/redes.webp" width="300px" alt="Mantente Informado">
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Close Banner -->
+
+    <!-- Start Section -->
+    <section class="container py-5">
+        <div class="row text-center pt-5 pb-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Recomendaciones</h1>
+                <p>
+                   Aquí te sugerimos las mejores PC ensambladas, laptops y componentes para tu ensamblaje.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 pb-5 clickable-div">
+                        <a href="shop.html" class="text-decoration-none">
+                            <div class="h-100 py-5 services-icon-wap shadow">
+                                <div class="h1 text-success text-center"><i class="fa fa-desktop fa-lg"></i></div>
+                                <h2 class="h5 mt-4 text-center">Computadoras</h2>
+                            </div>
+                        </a>
+                    </div>
+        
+                    <div class="col-md-6 col-lg-3 pb-5 clickable-laptop">
+                        <a href="shop.html" class="text-decoration-none">
+                            <div class="h-100 py-5 services-icon-wap shadow">
+                                <div class="h1 text-success text-center"><i class="fas fa-laptop"></i></div>
+                                <h2 class="h5 mt-4 text-center">Laptops</h2>
+                            </div>
+                        </a>
+                    </div>
+        
+                    <div class="col-md-6 col-lg-3 pb-5 clickable-cpu">
+                        <a href="shop.html" class="text-decoration-none">
+                            <div class="h-100 py-5 services-icon-wap shadow">
+                                <div class="h1 text-success text-center"><i class="fas fa-microchip"></i></div>
+                                <h2 class="h5 mt-4 text-center">Componentes</h2>
+                            </div>
+                        </a>
+                    </div>
+        
+                    <div class="col-md-6 col-lg-3 pb-5 clickable-contact">
+                        <a href="contact.html" class="text-decoration-none">
+                            <div class="h-100 py-5 services-icon-wap shadow">
+                                <div class="h1 text-success text-center"><i class="fa fa-user"></i></div>
+                                <h2 class="h5 mt-4 text-center">Contacto</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- End Section -->
+
+    <!-- Start Brands -->
+    <section class="bg-light py-5">
+        <div class="container my-4">
+            <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1">Te invitamos a visitar algunas de las marcas más utilizadas</h1>
+                    <p>
+                        Selecciona y disfruta
+                        con las mejores marcas.
+                    </p>
+                </div>
+                <div class="col-lg-9 m-auto tempaltemo-carousel">
+                    <div class="row d-flex flex-row">
+                        <!--Controls-->
+                        <div class="col-1 align-self-center">
+                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="prev">
+                                <i class="text-light fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                        <!--End Controls-->
+
+                        <!--Carousel Wrapper-->
+                        <div class="col">
+                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="multi-item-example" data-bs-ride="carousel">
+                                <!--Slides-->
+                                <div class="carousel-inner product-links-wap" role="listbox">
+
+                                   <!--First slide-->
+<div class="carousel-item active">
+    <div class="row">
+        <div class="col-3 p-md-5">
+            <a href="https://www.asus.com" target="_blank"><img class="img-fluid brand-img" src="assets/Computadoras/Logos/Asus.png" alt="Brand Logo"></a>
+        </div>
+        <div class="col-3 p-md-5">
+            <a href="https://www.corsair.com" target="_blank"><img class="img-fluid brand-img" src="assets/Computadoras/Logos/Corsair.png" alt="Brand Logo"></a>
+        </div>
+        <div class="col-3 p-md-5">
+            <a href="https://www.nvidia.com" target="_blank"><img class="img-fluid brand-img" src="assets/Computadoras/Logos/Nvidia.png" alt="Brand Logo"></a>
+        </div>
+        <div class="col-3 p-md-5">
+            <a href="https://www.amd.com" target="_blank"><img class="img-fluid brand-img" src="assets/Computadoras/Logos/AMD.png" alt="Brand Logo"></a>
+        </div>
+    </div>
+</div>
+<!--End First slide-->
+
+<!--Second slide-->
+<div class="carousel-item">
+    <div class="row">
+        <div class="col-3 p-md-5">
+            <a href="https://www.adata.com" target="_blank"><img class="img-fluid brand-img" src="assets/Computadoras/Logos/Adata.png" alt="Brand Logo"></a>
+        </div>
+        <div class="col-3 p-md-5">
+            <a href="https://www.nvidia.com" target="_blank"><img class="img-fluid brand-img" src="assets/Computadoras/Logos/Nvidia.png" alt="Brand Logo"></a>
+        </div>
+        <div class="col-3 p-md-5">
+            <a href="https://www.corsair.com" target="_blank"><img class="img-fluid brand-img" src="assets/Computadoras/Logos/Corsair.png" alt="Brand Logo"></a>
+        </div>
+        <div class="col-3 p-md-5">
+            <a href="https://www.asus.com" target="_blank"><img class="img-fluid brand-img" src="assets/Computadoras/Logos/Asus.png" alt="Brand Logo"></a>
+        </div>
+    </div>
+</div>
+<!--End Second slide-->
+
+<!--Third slide-->
+<div class="carousel-item">
+    <div class="row">
+        <div class="col-3 p-md-5">
+            <a href="https://www.intel.com" target="_blank"><img class="img-fluid brand-img" src="assets/Computadoras/Logos/Intel_logo_(2006-2020).svg (1).png" alt="Brand Logo"></a>
+        </div>
+        <div class="col-3 p-md-5">
+            <a href="https://www.amd.com" target="_blank"><img class="img-fluid brand-img" src="assets/Computadoras/Logos/AMD.png" alt="Brand Logo"></a>
+        </div>
+        <div class="col-3 p-md-5">
+            <a href="https://www.corsair.com" target="_blank"><img class="img-fluid brand-img" src="assets/Computadoras/Logos/Corsair.png" alt="Brand Logo"></a>
+        </div>
+        <div class="col-3 p-md-5">
+            <a href="https://www.asus.com" target="_blank"><img class="img-fluid brand-img" src="assets/Computadoras/Logos/Asus.png" alt="Brand Logo"></a>
+        </div>
+    </div>
+</div>
+                                    <!--End Third slide-->
+
+                                </div>
+                                <!--End Slides-->
+                            </div>
+                        </div>
+                        <!--End Carousel Wrapper-->
+
+                        <!--Controls-->
+                        <div class="col-1 align-self-center">
+                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="next">
+                                <i class="text-light fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        <!--End Controls-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Brands-->
+
+
+    <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">PC MATCH</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt fa-fw"></i>
+                            Universidad Autonoma del Estado de Hidalgo, 42184 El Álamo, Hgo.
+                        </li>
+                        <li>
+                            <i class="fa fa-phone fa-fw"></i>
+                            <a class="text-decoration-none" href="tel:010-020-0340">771-503-8433</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope fa-fw"></i>
+                            <a class="text-decoration-none" href="mailto:info@company.com">fabriciovillanueva337520@outlook.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Productos</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="procesadores.html">Procesadores</a></li>
+                        <li><a class="text-decoration-none" href="placas-madre.html">Placas Madre</a></li>
+                        <li><a class="text-decoration-none" href="tarjetas-graficas.html">Tarjetas Gráficas</a></li>
+                        <li><a class="text-decoration-none" href="memorias-ram.html">Memorias RAM</a></li>
+                        <li><a class="text-decoration-none" href="ventiladores-refrigeracion.html">Ventiladores/Refrigeración</a></li>
+                        <li><a class="text-decoration-none" href="unidades-almacenamiento.html">Unidades de Almacenamiento</a></li>
+                        <li><a class="text-decoration-none" href="fuentes-poder.html">Fuentes de Poder</a></li>
+                        <li><a class="text-decoration-none" href="gabinetes.html">Gabinetes</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Información adicional</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="#">Inicio</a></li>
+                       
+                        <li><a class="text-decoration-none" href="#">Redes Sociales</a></li>
+                        
+                        <li><a class="text-decoration-none" href="#">Contacto</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="row text-light mb-4">
+                <div class="col-12 mb-3">
+                    <div class="w-100 my-3 border-top border-light"></div>
+                </div>
+                <div class="col-auto me-auto">
+                    <ul class="list-inline text-left footer-icons">
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/Fabricio206780"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/fabriciovillanuevah"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/tensengoldsn"><i class="fab fa-twitter fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-auto">
+                    <label class="sr-only" for="subscribeEmail"></label>
+                    
+                </div>
+            </div>
+        </div>
+
+          <div class="w-100 bg-black py-3">
+            <div class="container">
+                <div class="row pt-2">
+                    <div class="col-12">
+                        <p class="text-left text-light">
+                            Copyright &copy; 2024 PC MATCH  
+                            |  By Fabricio Villanueva. <a rel="sponsored" href="Aviso de privacidad.html" target="_blank">Aviso legal</a>
+                        </p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Start Script -->
+    <script src="assets/js/jquery-1.11.0.min.js"></script>
+    <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/templatemo.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/redireccionar.js"></script>
+    <script src="abou.js"></script>
+    <!-- End Script -->
+</body>
+
+</html>
